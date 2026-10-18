@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日の気分診断</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #fff0f5;
+            color: #665566;
+            margin: 0;
+            padding: 40px 20px;
+            transition: background-color 0.5s;
+        }
+
+        h1 {
+            color: #d4779a;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.8;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        button {
+            background-color: #f5a9c4;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 14px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+            transform: translateY(-3px);
+        }
+
+        #result {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 25px;
+            box-shadow: 0 4px 12px #00000010;
+        }
+
+        #emoji {
+            font-size: 50px;
+        }
+
+        #message {
+            color: #d4779a;
+            font-size: 22px;
+        }
+
+        #reset {
+            background-color: #bba5c9;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>今日の気分は？</h1>
+    <p>今の気持ちにぴったりなボタンを選んでね ♡</p>
+
+    <div class="buttons">
+        <button onclick="checkMood('happy')">🥰 嬉しい</button>
+        <button onclick="checkMood('normal')">😌 普通</button>
+        <button onclick="checkMood('sad')">🥺 悲しい</button>
+        <button onclick="checkMood('tired')">😴 疲れた</button>
+    </div>
+
+    <div id="result">
+        <div id="emoji"></div>
+        <h2 id="message"></h2>
+        <p id="advice"></p>
+        <button id="reset" onclick="resetMood()">
+            もう一度診断する
+        </button>
+    </div>
+
+    <script>
+        function checkMood(mood) {
+            const result = document.getElementById("result");
+            const emoji = document.getElementById("emoji");
+            const message = document.getElementById("message");
+            const advice = document.getElementById("advice");
+
+            if (mood === "happy") {
+                document.body.style.backgroundColor = "#fff0c9";
+                emoji.textContent = "🌷";
+                message.textContent = "素敵な一日になりそう！";
+                advice.textContent =
+                    "おすすめの過ごし方：好きな音楽を聴いたり、おいしいものを食べたりして、楽しい気持ちを満喫しよう！";
+
+            } else if (mood === "normal") {
+                document.body.style.backgroundColor = "#e4f5e8";
+                emoji.textContent = "🍀";
+                message.textContent = "穏やかな一日もいいね！";
+                advice.textContent =
+                    "おすすめの過ごし方：お気に入りの飲み物を用意して、自分のペースでゆっくり過ごそう！";
+
+            } else if (mood === "sad") {
+                document.body.style.backgroundColor = "#dfe8ff";
+                emoji.textContent = "🌧️";
+                message.textContent = "無理しなくても大丈夫だよ";
+                advice.textContent =
+                    "おすすめの過ごし方：好きな動画を見たり、温かい飲み物を飲んだりして、自分をいたわってあげよう！";
+
+            } else if (mood === "tired") {
+                document.body.style.backgroundColor = "#eadcf5";
+                emoji.textContent = "🌙";
+                message.textContent = "今日もおつかれさま！";
+                advice.textContent =
+                    "おすすめの過ごし方：ゆっくりお風呂に入って、早めに休もう。何もしない時間も大切だよ！";
+            }
+
+            result.style.display = "block";
+        }
+
+        function resetMood() {
+            document.body.style.backgroundColor = "#fff0f5";
+            document.getElementById("result").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
